@@ -11,10 +11,12 @@
 		B26513E71E4D949C004CB01B /* JTLoadMoreControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26513E61E4D949C004CB01B /* JTLoadMoreControlTests.swift */; };
 		B26513E91E4D949C004CB01B /* JTLoadMoreControl.h in Headers */ = {isa = PBXBuildFile; fileRef = B26513DB1E4D949C004CB01B /* JTLoadMoreControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B26513F91E4D9500004CB01B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26513F81E4D9500004CB01B /* AppDelegate.swift */; };
-		B26513FB1E4D9500004CB01B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26513FA1E4D9500004CB01B /* ViewController.swift */; };
 		B26513FE1E4D9500004CB01B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B26513FC1E4D9500004CB01B /* Main.storyboard */; };
 		B26514001E4D9500004CB01B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B26513FF1E4D9500004CB01B /* Assets.xcassets */; };
 		B26514031E4D9500004CB01B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B26514011E4D9500004CB01B /* LaunchScreen.storyboard */; };
+		B26514091E4D9901004CB01B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26514081E4D9901004CB01B /* TableViewController.swift */; };
+		B265140B1E4DA35C004CB01B /* JTLoadMoreControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265140A1E4DA35C004CB01B /* JTLoadMoreControl.swift */; };
+		B265140C1E4DA40C004CB01B /* JTLoadMoreControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B265140A1E4DA35C004CB01B /* JTLoadMoreControl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,11 +38,12 @@
 		B26513E81E4D949C004CB01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B26513F61E4D9500004CB01B /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26513F81E4D9500004CB01B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B26513FA1E4D9500004CB01B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		B26513FD1E4D9500004CB01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B26513FF1E4D9500004CB01B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B26514021E4D9500004CB01B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B26514041E4D9500004CB01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B26514081E4D9901004CB01B /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		B265140A1E4DA35C004CB01B /* JTLoadMoreControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTLoadMoreControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,7 @@
 			children = (
 				B26513DB1E4D949C004CB01B /* JTLoadMoreControl.h */,
 				B26513DC1E4D949C004CB01B /* Info.plist */,
+				B265140A1E4DA35C004CB01B /* JTLoadMoreControl.swift */,
 			);
 			path = JTLoadMoreControl;
 			sourceTree = "<group>";
@@ -110,8 +114,8 @@
 		B26513F71E4D9500004CB01B /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				B26514081E4D9901004CB01B /* TableViewController.swift */,
 				B26513F81E4D9500004CB01B /* AppDelegate.swift */,
-				B26513FA1E4D9500004CB01B /* ViewController.swift */,
 				B26513FC1E4D9500004CB01B /* Main.storyboard */,
 				B26513FF1E4D9500004CB01B /* Assets.xcassets */,
 				B26514011E4D9500004CB01B /* LaunchScreen.storyboard */,
@@ -199,6 +203,7 @@
 				TargetAttributes = {
 					B26513D71E4D949C004CB01B = {
 						CreatedOnToolsVersion = 8.2;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					B26513E01E4D949C004CB01B = {
@@ -263,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B265140B1E4DA35C004CB01B /* JTLoadMoreControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,8 +284,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B26513FB1E4D9500004CB01B /* ViewController.swift in Sources */,
 				B26513F91E4D9500004CB01B /* AppDelegate.swift in Sources */,
+				B26514091E4D9901004CB01B /* TableViewController.swift in Sources */,
+				B265140C1E4DA40C004CB01B /* JTLoadMoreControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +422,7 @@
 		B26513ED1E4D949C004CB01B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -426,6 +434,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjt.JTLoadMoreControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -433,6 +442,7 @@
 		B26513EE1E4D949C004CB01B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -451,6 +461,7 @@
 		B26513F01E4D949C004CB01B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = JTLoadMoreControlTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjt.JTLoadMoreControlTests;
@@ -462,6 +473,7 @@
 		B26513F11E4D949C004CB01B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = JTLoadMoreControlTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zjt.JTLoadMoreControlTests;

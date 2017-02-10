@@ -2,7 +2,7 @@
 //  JTLoadMoreControl.h
 //  JTLoadMoreControl
 //
-//  Created by DaiDai on 10/02/2017.
+//  Created by ZhouJiatao on 10/02/2017.
 //  Copyright © 2017 ZhouJiatao. All rights reserved.
 //
 
