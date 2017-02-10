@@ -19,8 +19,8 @@ class TableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.tableFooterView = loadMoreControl
-        print(loadMoreControl.superScrollView)
         
+        loadMoreControl.endLoadingDueToFailed()
     }
 
     @IBAction func refreshing(_ sender: UIRefreshControl) {
