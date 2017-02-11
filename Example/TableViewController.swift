@@ -20,7 +20,8 @@ class TableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         tableView.tableFooterView = loadMoreControl
         
-        loadMoreControl.endLoadingDueToFailed()
+        //loadMoreControl.endLoadingDueToFailed()
+        
     }
 
     @IBAction func refreshing(_ sender: UIRefreshControl) {
