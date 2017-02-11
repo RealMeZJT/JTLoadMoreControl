@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JTLoadMoreControl: UIView {
+class JTLoadMoreControl: UIControl {
 
     public enum JTLoadMoreControlState {
         case idle //空闲
@@ -17,10 +17,13 @@ class JTLoadMoreControl: UIView {
         case PleaseTryAgain //请重试（加载失败后的状态）
     }
     
-    public private(set) var state: JTLoadMoreControlState = .idle {
+    public private(set) var jt_state: JTLoadMoreControlState = .idle {
         didSet {
-            if oldValue != state {
-                updateUI(byState: state)
+            if oldValue != jt_state {
+                updateUI(byState: jt_state)
+            }
+            if jt_state == .loading {
+                self.sendActions(for: .valueChanged)
             }
         }
     }
@@ -64,7 +67,7 @@ class JTLoadMoreControl: UIView {
     }
     
     
-    private var stateButton = UIButton()
+    private var jt_stateButton = UIButton()
     private var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
     
@@ -80,55 +83,55 @@ class JTLoadMoreControl: UIView {
         
         activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
-        stateButton.addSubview(activityIndicator)
+        jt_stateButton.addSubview(activityIndicator)
         
-        stateButton.titleLabel?.font = textFont
-        stateButton.setTitleColor(textColor, for: .normal)
-        stateButton.addTarget(self,
+        jt_stateButton.titleLabel?.font = textFont
+        jt_stateButton.setTitleColor(textColor, for: .normal)
+        jt_stateButton.addTarget(self,
                               action: #selector(onStateButtonClick),
                               for: .touchUpInside)
-        addSubview(stateButton)
+        addSubview(jt_stateButton)
         
     }
     
     //配置
     private func config() {
         let indicatorOrigin = CGPoint(x: 0,
-                                      y: (stateButton.frame.height - activityIndicator.frame.height) / 2)
+                                      y: (jt_stateButton.frame.height - activityIndicator.frame.height) / 2)
         activityIndicator.frame = CGRect(origin: indicatorOrigin,
                                          size: activityIndicator.bounds.size)
         
         let leftInset = activityIndicator.isAnimating
             ? activityIndicator.frame.width
             : 0
-        stateButton.contentEdgeInsets = UIEdgeInsets(top: 0,
+        jt_stateButton.contentEdgeInsets = UIEdgeInsets(top: 0,
                                                      left: leftInset,
                                                      bottom: 0,
                                                      right: 0)
-        stateButton.center = CGPoint(x: bounds.width / 2,
+        jt_stateButton.center = CGPoint(x: bounds.width / 2,
                                      y: bounds.height / 2)
     }
 
-    //根据state更新UI
-    private func updateUI(byState state: JTLoadMoreControlState) {
-        switch state {
+    //根据jt_state更新UI
+    private func updateUI(byState jt_state: JTLoadMoreControlState) {
+        switch jt_state {
         case .loading:
-            stateButton.setTitle("正在加载…", for: .normal)
+            jt_stateButton.setTitle("正在加载…", for: .normal)
             activityIndicator.startAnimating()
             break
         case .noMoreData:
-            stateButton.setTitle("没有数据了", for: .normal)
+            jt_stateButton.setTitle("没有数据了", for: .normal)
             activityIndicator.stopAnimating()
             break
         case .PleaseTryAgain:
-            stateButton.setTitle("加载失败，请重试", for: .normal)
+            jt_stateButton.setTitle("加载失败，请重试", for: .normal)
             activityIndicator.stopAnimating()
             break
         default:
             break
         }
         
-        stateButton.sizeToFit()
+        jt_stateButton.sizeToFit()
     }
     
     //MARK: - KVO
@@ -149,8 +152,8 @@ class JTLoadMoreControl: UIView {
         
         let isReachBottom = superScrollView.contentOffset.y >= (superScrollView.contentSize.height - superScrollView.frame.height)
         
-        if isReachBottom && (state == .idle) {
-            state = .loading
+        if isReachBottom && (jt_state == .idle) {
+            jt_state = .loading
         }
     }
 
@@ -167,15 +170,15 @@ class JTLoadMoreControl: UIView {
     
     //MARK: - public method
     public func endLoading() {
-        state = .idle
+        jt_state = .idle
     }
     
     public func endLoadingDueToFailed() {
-        state = .PleaseTryAgain
+        jt_state = .PleaseTryAgain
     }
     
     public func endLoadingDueToNoMoreData() {
-        state = .noMoreData
+        jt_state = .noMoreData
     }
     
     /*
