@@ -19,11 +19,10 @@ class TableViewController: UITableViewController, FakeCommunicatorDelegate {
         communicator.delegate = self
         tableView.tableFooterView = loadMoreControl
         loadMoreControl.addTarget(self, action: #selector(loadingMore), for: .valueChanged)
-       // communicator.fetchPage(page: 0)
+        communicator.fetchPage(page: 0)
     }
 
     @IBAction func refreshing(_ sender: UIRefreshControl) {
-        
         communicator.fetchPage(page: 0)
     }
     
@@ -33,7 +32,7 @@ class TableViewController: UITableViewController, FakeCommunicatorDelegate {
     
     @IBAction func switchNetwork(_ sender: UISwitch) {
         communicator.awaylFetchFaild = sender.isOn
-        title = sender.isOn ? "网络异常" : "网络正常"
+        title = sender.isOn ? "模拟网络异常" : "模拟网络正常"
     
     }
     
@@ -51,6 +50,7 @@ class TableViewController: UITableViewController, FakeCommunicatorDelegate {
     }
     
     func onFetchFailed() {
+        refreshControl?.endRefreshing()
         loadMoreControl.endLoadingDueToFailed()
     }
     

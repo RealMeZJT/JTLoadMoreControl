@@ -18,7 +18,7 @@ class FakeCommunicator {
     
     struct Contants {
         static var pageSize:Int = 10
-        static var totalpage: Int = 4
+        static var totalpage: Int = 3
     }
     
     var awaylFetchFaild = false
@@ -29,7 +29,7 @@ class FakeCommunicator {
         
     
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             [unowned self] in
             if self.awaylFetchFaild {
                 self.delegate?.onFetchFailed()

@@ -14,7 +14,7 @@ class JTLoadMoreControl: UIControl {
         case idle //空闲
         case loading //加载中
         case noMoreData //没有更多数据
-        case PleaseTryAgain //请重试（加载失败后的状态）
+        case pleaseTryAgain //请重试（加载失败后的状态）
     }
     
     public private(set) var jt_state: JTLoadMoreControlState = .idle {
@@ -28,6 +28,9 @@ class JTLoadMoreControl: UIControl {
         }
     }
     
+    public var loadingText = "正在加载…"
+    public var noMoreDataText = "没有数据了"
+    public var pleaseTryAgainText = "点击重试"
     public var textFont = UIFont.systemFont(ofSize: 14)
     public var textColor = UIColor.black
     
@@ -82,8 +85,7 @@ class JTLoadMoreControl: UIControl {
     private func setup() {
         
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.startAnimating()
-        jt_stateButton.addSubview(activityIndicator)
+        addSubview(activityIndicator)
         
         jt_stateButton.titleLabel?.font = textFont
         jt_stateButton.setTitleColor(textColor, for: .normal)
@@ -97,40 +99,42 @@ class JTLoadMoreControl: UIControl {
     
     //配置
     private func config() {
-        let indicatorOrigin = CGPoint(x: 0,
-                                      y: (jt_stateButton.frame.height - activityIndicator.frame.height) / 2)
+        
+        //为了让 jt_stateButton 和 activityIndicator 整体居中
+        let btnCenterOffset = activityIndicator.isAnimating
+            ? activityIndicator.frame.width / 2
+            : 0
+        
+        jt_stateButton.center = CGPoint(x: (frame.width / 2) + btnCenterOffset,
+                                     y: frame.height / 2)
+        
+        let indicatorOrigin = CGPoint(x: jt_stateButton.frame.minX - activityIndicator.frame.size.width,
+                                      y: (frame.height - activityIndicator.frame.height) / 2)
         activityIndicator.frame = CGRect(origin: indicatorOrigin,
                                          size: activityIndicator.bounds.size)
-        
-        let leftInset = activityIndicator.isAnimating
-            ? activityIndicator.frame.width
-            : 0
-        jt_stateButton.contentEdgeInsets = UIEdgeInsets(top: 0,
-                                                     left: leftInset,
-                                                     bottom: 0,
-                                                     right: 0)
-        jt_stateButton.center = CGPoint(x: bounds.width / 2,
-                                     y: bounds.height / 2)
     }
 
     //根据jt_state更新UI
     private func updateUI(byState jt_state: JTLoadMoreControlState) {
         jt_stateButton.isHidden = jt_state == .idle
+        jt_stateButton.isEnabled = jt_state == .pleaseTryAgain
         
         switch jt_state {
         case .loading:
-            jt_stateButton.setTitle("正在加载…", for: .normal)
+            jt_stateButton.setTitle(loadingText, for: .normal)
             activityIndicator.startAnimating()
             break
         case .noMoreData:
-            jt_stateButton.setTitle("没有数据了", for: .normal)
+            jt_stateButton.setTitle(noMoreDataText, for: .normal)
             activityIndicator.stopAnimating()
             break
-        case .PleaseTryAgain:
-            jt_stateButton.setTitle("加载失败，请重试", for: .normal)
+        case .pleaseTryAgain:
+            jt_stateButton.setTitle(pleaseTryAgainText, for: .normal)
             activityIndicator.stopAnimating()
             break
         default:
+            jt_stateButton.setTitle("", for: .normal)
+            activityIndicator.stopAnimating()
             break
         }
         
@@ -147,7 +151,7 @@ class JTLoadMoreControl: UIControl {
     //MARK: -
 
     func onStateButtonClick() {
-        
+        jt_state = .loading
     }
     
     private func updateStateIfNeeded() {
@@ -179,7 +183,7 @@ class JTLoadMoreControl: UIControl {
     }
     
     public func endLoadingDueToFailed() {
-        jt_state = .PleaseTryAgain
+        jt_state = .pleaseTryAgain
     }
     
     public func endLoadingDueToNoMoreData() {
