@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A5240501E4EFDBF004AEA83 /* FakeTableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A52404F1E4EFDBF004AEA83 /* FakeTableModel.swift */; };
+		5A5240521E4F01EE004AEA83 /* FakeCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A5240511E4F01EE004AEA83 /* FakeCommunicator.swift */; };
 		B26513E21E4D949C004CB01B /* JTLoadMoreControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B26513D81E4D949C004CB01B /* JTLoadMoreControl.framework */; };
 		B26513E71E4D949C004CB01B /* JTLoadMoreControlTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B26513E61E4D949C004CB01B /* JTLoadMoreControlTests.swift */; };
 		B26513E91E4D949C004CB01B /* JTLoadMoreControl.h in Headers */ = {isa = PBXBuildFile; fileRef = B26513DB1E4D949C004CB01B /* JTLoadMoreControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A52404F1E4EFDBF004AEA83 /* FakeTableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeTableModel.swift; sourceTree = "<group>"; };
+		5A5240511E4F01EE004AEA83 /* FakeCommunicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeCommunicator.swift; sourceTree = "<group>"; };
 		B26513D81E4D949C004CB01B /* JTLoadMoreControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JTLoadMoreControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B26513DB1E4D949C004CB01B /* JTLoadMoreControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JTLoadMoreControl.h; sourceTree = "<group>"; };
 		B26513DC1E4D949C004CB01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -72,6 +76,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A52404E1E4EFD92004AEA83 /* Fake */ = {
+			isa = PBXGroup;
+			children = (
+				5A52404F1E4EFDBF004AEA83 /* FakeTableModel.swift */,
+				5A5240511E4F01EE004AEA83 /* FakeCommunicator.swift */,
+			);
+			name = Fake;
+			sourceTree = "<group>";
+		};
 		B26513CE1E4D949C004CB01B = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +127,7 @@
 		B26513F71E4D9500004CB01B /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				5A52404E1E4EFD92004AEA83 /* Fake */,
 				B26514081E4D9901004CB01B /* TableViewController.swift */,
 				B26513F81E4D9500004CB01B /* AppDelegate.swift */,
 				B26513FC1E4D9500004CB01B /* Main.storyboard */,
@@ -286,6 +300,8 @@
 			files = (
 				B26513F91E4D9500004CB01B /* AppDelegate.swift in Sources */,
 				B26514091E4D9901004CB01B /* TableViewController.swift in Sources */,
+				5A5240521E4F01EE004AEA83 /* FakeCommunicator.swift in Sources */,
+				5A5240501E4EFDBF004AEA83 /* FakeTableModel.swift in Sources */,
 				B265140C1E4DA40C004CB01B /* JTLoadMoreControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +541,7 @@
 				B26513EE1E4D949C004CB01B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B26513EF1E4D949C004CB01B /* Build configuration list for PBXNativeTarget "JTLoadMoreControlTests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +550,7 @@
 				B26513F11E4D949C004CB01B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B26514051E4D9500004CB01B /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
@@ -541,6 +559,7 @@
 				B26514071E4D9500004CB01B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

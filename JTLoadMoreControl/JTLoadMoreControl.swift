@@ -87,6 +87,7 @@ class JTLoadMoreControl: UIControl {
         
         jt_stateButton.titleLabel?.font = textFont
         jt_stateButton.setTitleColor(textColor, for: .normal)
+        jt_stateButton.clipsToBounds = true
         jt_stateButton.addTarget(self,
                               action: #selector(onStateButtonClick),
                               for: .touchUpInside)
@@ -114,6 +115,8 @@ class JTLoadMoreControl: UIControl {
 
     //根据jt_state更新UI
     private func updateUI(byState jt_state: JTLoadMoreControlState) {
+        jt_stateButton.isHidden = jt_state == .idle
+        
         switch jt_state {
         case .loading:
             jt_stateButton.setTitle("正在加载…", for: .normal)
@@ -149,12 +152,14 @@ class JTLoadMoreControl: UIControl {
     
     private func updateStateIfNeeded() {
         guard let superScrollView = superScrollView else {return}
+        guard superScrollView.contentOffset.y > 0 else {return}
         
         let isReachBottom = superScrollView.contentOffset.y >= (superScrollView.contentSize.height - superScrollView.frame.height)
         
-        if isReachBottom && (jt_state == .idle) {
+        if isReachBottom && (jt_state == .idle){
             jt_state = .loading
         }
+        
     }
 
     //找到容纳次控件的 scrollview
