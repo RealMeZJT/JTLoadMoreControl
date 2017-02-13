@@ -6,16 +6,9 @@ UITableView上拉加载更多的控件。
 
 # 安装
 ## Carthage
-确保你的计算机安装 [Carthage](https://github.com/Carthage/Carthage) 了。在项目根目录下创建 `Cartfile` 文件并写入：
 
 ```bash
 github "RealMeZJT/JTLoadMoreControl"
-```
-
-并使用 Terminal 在项目根目录下执行：
-
-```bash
-$ carthage update
 ```
 
 ## 手动
