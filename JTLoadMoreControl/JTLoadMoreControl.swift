@@ -8,7 +8,7 @@
 
 import UIKit
 
-class JTLoadMoreControl: UIControl {
+public class JTLoadMoreControl: UIControl {
 
     public enum JTLoadMoreControlState {
         case idle //空闲
@@ -55,7 +55,7 @@ class JTLoadMoreControl: UIControl {
         setup()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
@@ -64,7 +64,7 @@ class JTLoadMoreControl: UIControl {
         superScrollView?.removeObserver(self, forKeyPath: "contentOffset")
     }
     
-    override func didMoveToSuperview() {
+    override public func didMoveToSuperview() {
         super.didMoveToSuperview()
         superScrollView = findSuperScrollView(forView: self)
     }
@@ -74,7 +74,7 @@ class JTLoadMoreControl: UIControl {
     private var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         config()
     }
@@ -142,7 +142,7 @@ class JTLoadMoreControl: UIControl {
     }
     
     //MARK: - KVO
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "contentOffset" {
             updateStateIfNeeded()
         }
