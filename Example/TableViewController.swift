@@ -14,11 +14,12 @@ class TableViewController: UITableViewController, FakeCommunicatorDelegate {
     var model = FakeTableModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "网络正常"
+        title = "模拟网络正常"
 
         communicator.delegate = self
         tableView.tableFooterView = loadMoreControl
         loadMoreControl.addTarget(self, action: #selector(loadingMore), for: .valueChanged)
+        
         communicator.fetchPage(page: 0)
     }
 
@@ -33,28 +34,9 @@ class TableViewController: UITableViewController, FakeCommunicatorDelegate {
     @IBAction func switchNetwork(_ sender: UISwitch) {
         communicator.awaylFetchFaild = sender.isOn
         title = sender.isOn ? "模拟网络异常" : "模拟网络正常"
-    
     }
-    
-    func onFetchSuccess(newTitles: [String],page: Int) {
-        if page == 0 {
-            model.reset()
-        } else {
-            model.currentPage = model.currentPage + 1
-        }
-        
-        model.append(newTitles: newTitles)
-        refreshControl?.endRefreshing()
-        newTitles.isEmpty ? loadMoreControl.endLoadingDueToNoMoreData() : loadMoreControl.endLoading()
-        tableView.reloadData()
-    }
-    
-    func onFetchFailed() {
-        refreshControl?.endRefreshing()
-        loadMoreControl.endLoadingDueToFailed()
-    }
-    
-   
+
+
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -74,6 +56,24 @@ class TableViewController: UITableViewController, FakeCommunicatorDelegate {
         return cell
     }
     
+    // MARK: - Network Delegate
     
+    func onFetchSuccess(newTitles: [String],page: Int) {
+        if page == 0 {
+            model.reset()
+        } else {
+            model.currentPage = model.currentPage + 1
+        }
+        
+        model.append(newTitles: newTitles)
+        refreshControl?.endRefreshing()
+        newTitles.isEmpty ? loadMoreControl.endLoadingDueToNoMoreData() : loadMoreControl.endLoading()
+        tableView.reloadData()
+    }
+    
+    func onFetchFailed() {
+        refreshControl?.endRefreshing()
+        loadMoreControl.endLoadingDueToFailed()
+    }
 
 }

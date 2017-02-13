@@ -14,21 +14,19 @@ protocol FakeCommunicatorDelegate {
     func onFetchFailed()
 }
 
+//模拟数据请求
 class FakeCommunicator {
     
     struct Contants {
-        static var pageSize:Int = 10
+        static var pageSize:Int = 20
         static var totalpage: Int = 3
     }
     
     var awaylFetchFaild = false
     var delegate: FakeCommunicatorDelegate?
     
-    let pageSize:Int = 10
     func fetchPage(page:Int) {
-        
-    
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             [unowned self] in
             if self.awaylFetchFaild {
@@ -47,7 +45,7 @@ class FakeCommunicator {
     private func createFakeTitles(byPage page:Int) -> [String] {
         var fakeResult: [String] = []
         let startIndex = page * Contants.pageSize
-        for i in 0...(pageSize-1) {
+        for i in 0...(Contants.pageSize - 1) {
             fakeResult.append("hello \(startIndex + i)")
         }
         return fakeResult
