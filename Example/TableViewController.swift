@@ -27,7 +27,7 @@ class TableViewController: UITableViewController, FakeCommunicatorDelegate {
         communicator.fetchPage(page: 0)
     }
     
-    func loadingMore() {
+    @objc func loadingMore() {
         communicator.fetchPage(page: model.currentPage + 1)
     }
     

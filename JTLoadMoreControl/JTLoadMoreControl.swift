@@ -9,7 +9,7 @@
 import UIKit
 
 open class JTLoadMoreControl: UIControl {
-
+    
     public enum JTLoadMoreControlState {
         case idle //空闲
         case loading //加载中
@@ -33,7 +33,6 @@ open class JTLoadMoreControl: UIControl {
     public var pleaseTryAgainText = "点击重试"
     public var textFont = UIFont.systemFont(ofSize: 14)
     public var textColor = UIColor.black
-    
     
     var superScrollView: UIScrollView? {
         didSet {
@@ -69,16 +68,14 @@ open class JTLoadMoreControl: UIControl {
         superScrollView = findSuperScrollView(forView: self)
     }
     
-    
     private var jt_stateButton = UIButton()
-    private var activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-
+    private var activityIndicator = UIActivityIndicatorView(style: .gray)
+    
     
     open override func layoutSubviews() {
         super.layoutSubviews()
         config()
     }
-    
     
     //MARK: - config UI
     //搭建；只在初始化时调用。
@@ -91,8 +88,8 @@ open class JTLoadMoreControl: UIControl {
         jt_stateButton.setTitleColor(textColor, for: .normal)
         jt_stateButton.clipsToBounds = true
         jt_stateButton.addTarget(self,
-                              action: #selector(onStateButtonClick),
-                              for: .touchUpInside)
+                                 action: #selector(onStateButtonClick),
+                                 for: .touchUpInside)
         addSubview(jt_stateButton)
         
     }
@@ -106,14 +103,14 @@ open class JTLoadMoreControl: UIControl {
             : 0
         
         jt_stateButton.center = CGPoint(x: (frame.width / 2) + btnCenterOffset,
-                                     y: frame.height / 2)
+                                        y: frame.height / 2)
         
         let indicatorOrigin = CGPoint(x: jt_stateButton.frame.minX - activityIndicator.frame.size.width,
                                       y: (frame.height - activityIndicator.frame.height) / 2)
         activityIndicator.frame = CGRect(origin: indicatorOrigin,
                                          size: activityIndicator.bounds.size)
     }
-
+    
     //根据jt_state更新UI
     private func updateUI(byState jt_state: JTLoadMoreControlState) {
         jt_stateButton.isHidden = jt_state == .idle
@@ -149,8 +146,8 @@ open class JTLoadMoreControl: UIControl {
     }
     
     //MARK: -
-
-    func onStateButtonClick() {
+    
+    @objc func onStateButtonClick() {
         jt_state = .loading
     }
     
@@ -165,8 +162,8 @@ open class JTLoadMoreControl: UIControl {
         }
         
     }
-
-    //找到容纳次控件的 scrollview
+    
+    //找到容纳此控件的 scrollview
     private func findSuperScrollView(forView v:UIView) -> UIScrollView? {
         guard let container = v.superview else { return nil }
         
@@ -190,13 +187,6 @@ open class JTLoadMoreControl: UIControl {
         jt_state = .noMoreData
     }
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
-    
 }
+
 
